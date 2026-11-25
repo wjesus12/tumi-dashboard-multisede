@@ -1,0 +1,5 @@
+sede,codigo,region,lat,lon,apertura,habitaciones,parcelas_camping,aforo_diario,responsable_datos
+Lima,LIM,Lima · Carabayllo,-11.8,-76.98,2008-01-10,42,70,1400,admin.lim
+Chiclayo,CIX,Lambayeque,-6.77,-79.84,2015-03-01,30,45,950,admin.cix
+Ica,ICA,Ica,-14.07,-75.73,2018-06-01,26,40,800,admin.ica
+Tarapoto,TPP,San Martín,-6.49,-76.37,2026-06-15,24,35,600,admin.tpp

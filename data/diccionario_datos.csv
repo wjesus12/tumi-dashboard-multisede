@@ -1,0 +1,32 @@
+campo,tipo,descripcion,obligatorio,regla_validacion,sensibilidad,responsable
+id_registro,Texto,Código único de la operación,Sí,"Único, formato TUM-SEDE-00000",Interno,Comercial
+fecha_registro,Fecha,Día en que se registró la venta o reserva,Sí,Entre 01/01/2025 y hoy,Interno,Comercial
+fecha_visita,Fecha,Día de uso del servicio,Sí,≥ fecha_registro,Interno,Operaciones
+sede,Catálogo,Sede del club,Sí,"Lima, Chiclayo, Ica o Tarapoto",Interno,Gerencia
+servicio,Catálogo,Línea de negocio,Sí,Catálogo de 7 servicios,Interno,Comercial
+tipo_operacion,Catálogo,"Venta, alta o renovación de socio",Sí,Catálogo,Interno,Comercial
+canal,Catálogo,Medio por el que llegó la reserva,Sí,Catálogo de 5 canales,Interno,Marketing
+tipo_cliente,Catálogo,"Socio, visitante o corporativo",Sí,Catálogo,Interno,Comercial
+id_cliente,Texto,Identificador seudonimizado del cliente,Sí,Formato CLI-00000,Interno,Comercial
+cliente,Texto,Nombre o razón social,Sí,Enmascarar fuera de Gerencia,Dato personal,Comercial
+documento,Texto,"DNI (8 dígitos), CE o RUC (11 dígitos)",Sí,Formato válido · Ley 29733,Dato personal,Comercial
+telefono,Texto,Celular de contacto,Sí,"9 dígitos, inicia en 9",Dato personal,Comercial
+origen,Catálogo,Procedencia del visitante,Sí,"Misma ciudad, otras regiones, extranjero",Interno,Marketing
+plan_membresia,Catálogo,Plan del socio,Sí,"Individual, Familiar, Corporativo o Sin plan",Interno,Comercial
+personas,Entero,Número de personas,Sí,≥ 1,Interno,Operaciones
+noches,Entero,Noches de hospedaje o camping,Sí,≥ 0,Interno,Operaciones
+precio_unitario,Moneda S/,Tarifa aplicada,Sí,"> 0, según tarifario vigente",Interno,Comercial
+descuento_pct,Porcentaje,Descuento otorgado,Sí,0 a 50 %,Interno,Comercial
+monto_total,Moneda S/,Importe facturado,Sí,≥ 0,Confidencial,Contabilidad
+monto_pagado,Moneda S/,Importe cobrado,Sí,≤ monto_total,Confidencial,Tesorería
+saldo_pendiente,Moneda S/,Deuda por cobrar,Sí,"= total − pagado, ≥ 0",Confidencial,Tesorería
+metodo_pago,Catálogo,Medio de pago,Sí,Catálogo,Interno,Tesorería
+comprobante,Catálogo,Boleta o factura,Sí,Factura si es corporativo,Interno,Contabilidad
+estado_reserva,Catálogo,Situación de la reserva,Sí,"Confirmada, Completada, Cancelada, No show",Interno,Operaciones
+estado_pago,Catálogo,Situación del cobro,Sí,"Pagado, Parcial, Pendiente, Vencido, Anulado",Interno,Tesorería
+fecha_vencimiento,Fecha,Fecha límite de pago,Sí,≥ fecha_registro,Interno,Tesorería
+ocupacion_sede_pct,Porcentaje,Ocupación de la sede el día de la visita,Sí,0 a 100,Interno,Operaciones
+calificacion_nps,Entero 0-10,Respuesta a la encuesta de recomendación,No,0 a 10 o vacío,Interno,Experiencia
+consentimiento_datos,Sí / No,Autorización de uso comercial de datos,Sí,Obligatorio · Ley 29733,Dato personal,Legal
+registrado_por,Texto,Usuario o sistema que registró la operación,Sí,Usuario autorizado,Interno,TI
+ultima_actualizacion,Fecha y hora,Último cambio del registro (auditoría),Sí,≥ fecha_registro,Interno,TI
