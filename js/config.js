@@ -17,5 +17,5 @@ window.TUMI_CONFIG = {
   refrescoMinutos: 5,
   // Fecha de corte para calcular deuda vencida. Vacío = hoy. Los datos de ejemplo llegan al 24/11/2026.
   fechaCorte: "2026-11-24",
-  autor: "Wilmer",
+  autor: "Jesús",
 };
