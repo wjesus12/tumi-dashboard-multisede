@@ -415,6 +415,10 @@ body.fin-oscuro .foot__hills { background: var(--navy); }
 .foot__inner p { max-width: 640px; }
 .foot__inner b { color: #fff; }
 .foot__tech { margin-left: auto; font-size: 11.5px; color: rgba(255, 255, 255, .55); }
+.foot__by { width: 100%; display: flex; align-items: center; justify-content: flex-end; gap: var(--s2); padding-top: var(--s4); border-top: 1px solid rgba(255, 255, 255, .15); }
+.foot__by b { color: #fff; }
+.foot__by a { display: inline-flex; transition: transform .2s var(--ease); }
+.foot__by a:hover { transform: translateY(-2px); }
 
 /* ---------- Recorrido, avisos y modal ---------- */
 .tour { position: fixed; inset: 0; z-index: 90; pointer-events: none; }
