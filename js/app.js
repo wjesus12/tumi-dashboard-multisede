@@ -28,6 +28,8 @@
     { id: "detalle", nombre: "Detalle" }, { id: "gobernanza", nombre: "Gobernanza" }, { id: "ia", nombre: "IA y automatización" },
   ];
   const LUGAR = { Lima: "Carabayllo · km 33", Chiclayo: "Lambayeque · norte", Ica: "Costa sur · Huacachina", Tarapoto: "San Martín · selva" };
+  const FOTO = { Lima: "Piscina y tobogán del club en Lima", Chiclayo: "Pirámides de adobe en Lambayeque", Ica: "Oasis de Huacachina entre dunas", Tarapoto: "Catarata en la selva de San Martín" };
+  const foto = (s) => `<img src="assets/img/sedes/${s.toLowerCase()}.jpg" alt="${FOTO[s]}" loading="lazy" decoding="async" width="1120" height="560">`;
   const DIMS = { sede: "Sede", servicio: "Servicio", canal: "Canal", tipo_cliente: "Tipo de cliente" };
 
   const S = {
@@ -176,11 +178,11 @@
     const c = S.ctx, f = S.filtros, todas = sedesRol().every((s) => f.sedes.includes(s));
     $("postales").innerHTML = D.SEDES.map((s) => {
       const st = c.porSede[s];
-      if (!st) return `<button class="postal" type="button" disabled style="--c:${G.SEDE[s]}" title="Tu rol no tiene acceso a esta sede"><div class="postal__scene"><svg viewBox="0 0 240 120" preserveAspectRatio="xMidYMax slice"><use href="#ilu-${s}"/></svg><span class="postal__state">${ic("i-lock", "ic ic--sm")} Sin acceso</span></div><div class="postal__body"><h3>${s}</h3></div></button>`;
+      if (!st) return `<button class="postal" type="button" disabled style="--c:${G.SEDE[s]}" title="Tu rol no tiene acceso a esta sede"><div class="postal__scene">${foto(s)}<span class="postal__state">${ic("i-lock", "ic ic--sm")} Sin acceso</span></div><div class="postal__body"><h3>${s}</h3></div></button>`;
       const e = estadoSede(s, st), d = deltaTxt(st.facturacion, st.anterior?.facturacion);
       const on = !todas && f.sedes.includes(s), dim = !todas && !f.sedes.includes(s);
       return `<button class="postal ${on ? "is-on" : ""} ${dim ? "is-dim" : ""}" type="button" data-postal="${s}" style="--c:${G.SEDE[s]}" aria-pressed="${on}">
-        <div class="postal__scene"><svg viewBox="0 0 240 120" preserveAspectRatio="xMidYMax slice"><use href="#ilu-${s}"/></svg><span class="postal__state ${e.cls}">${e.txt}</span></div>
+        <div class="postal__scene">${foto(s)}<span class="postal__state ${e.cls}">${e.txt}</span></div>
         <div class="postal__body">
           <h3>${s} <small>${LUGAR[s]}</small></h3>
           <div class="postal__money">${fmt.soles(st.facturacion)}<em class="${d.cls === "is-down" ? "is-down" : d.cls === "is-flat" ? "is-flat" : ""}">${d.txt}</em></div>
@@ -311,7 +313,7 @@
   /* ---------- Pestaña: Cara a cara ---------- */
   function ladoSede(s, st) {
     const info = S.datos.sedes.find((x) => x.sede === s) || {};
-    return `<div class="postal__scene" style="--c:${G.SEDE[s]}"><svg viewBox="0 0 240 120" preserveAspectRatio="xMidYMax slice"><use href="#ilu-${s}"/></svg></div><h3>${s}</h3><p>${LUGAR[s]}</p><p>${info.habitaciones || "—"} habitaciones · ${info.parcelas_camping || "—"} parcelas</p><strong>${fmt.soles(st.facturacion)} en el periodo</strong>`;
+    return `<div class="postal__scene" style="--c:${G.SEDE[s]}">${foto(s)}</div><h3>${s}</h3><p>${LUGAR[s]}</p><p>${info.habitaciones || "—"} habitaciones · ${info.parcelas_camping || "—"} parcelas</p><strong>${fmt.soles(st.facturacion)} en el periodo</strong>`;
   }
   function tabCara() {
     const c = S.ctx, perm = sedesRol();

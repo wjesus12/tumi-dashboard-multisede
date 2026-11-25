@@ -203,9 +203,10 @@ img { display: block; max-width: 100%; }
 .postal.is-dim { opacity: .45; }
 .postal.is-dim:hover { opacity: .8; }
 .postal[disabled] { cursor: not-allowed; opacity: .3; }
-.postal__scene { position: relative; aspect-ratio: 2 / 1; background: color-mix(in srgb, var(--c) 9%, #fff); overflow: hidden; }
-.postal__scene svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform .6s var(--ease); }
-.postal:hover .postal__scene svg { transform: scale(1.04); }
+.postal__scene { position: relative; aspect-ratio: 2 / 1; background: var(--sand); overflow: hidden; }
+.postal__scene::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 42, 94, .28) 0%, rgba(10, 42, 94, 0) 38%); pointer-events: none; }
+.postal__scene img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s var(--ease); }
+.postal:hover .postal__scene img { transform: scale(1.05); }
 .postal__state { position: absolute; left: var(--s4); top: var(--s4); z-index: 2; font-size: 10.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 4px 8px; border-radius: 2px; background: #fff; color: var(--ink-2); }
 .postal__state.is-alert { background: var(--red); color: #fff; }
 .postal__state.is-new { background: var(--green-d); color: #fff; }
