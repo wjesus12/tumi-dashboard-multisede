@@ -1,16 +1,18 @@
 /* Recorrido guiado: resalta cada zona del tablero y explica su valor de negocio. */
 window.TumiTour = (() => {
   const PASOS = [
-    { sel: '[data-tour="fuente"]', titulo: "Datos en vivo desde Google Sheets", texto: "El tablero lee una hoja de cálculo compartida. Cuando recepción registra una venta, aquí se actualiza solo, cada 5 minutos o al presionar sincronizar." },
-    { sel: '[data-tour="roles"]', titulo: "Cada persona ve lo que le corresponde", texto: "Gobernanza de datos: un administrador de sede solo ve su sede y nadie ve DNI ni teléfonos sin autorización. Prueba cambiar el rol." },
-    { sel: '[data-tour="filtros"]', titulo: "Filtros que cruzan todo el tablero", texto: "Sede, periodo, servicio y tipo de cliente. Todos los gráficos, hallazgos y exportaciones respetan la misma selección." },
-    { sel: '[data-tour="kpis"]', titulo: "El pulso del negocio en 6 cifras", texto: "Facturación, cobranza, socios, reservas, ocupación y NPS, comparados con el mismo periodo del año anterior. Clic en una tarjeta para ir al detalle." },
-    { sel: '[data-tour="ingresos"]', titulo: "Lo vendido, lo cobrado y lo que viene", texto: "La brecha entre barras y línea verde es dinero por cobrar. La zona amarilla es el pronóstico de IA con su rango de confianza." },
-    { sel: '[data-tour="mapa"]', titulo: "Una red de cuatro sedes", texto: "Lima, Chiclayo, Ica y Tarapoto en un solo mapa. Haz clic en una sede para enfocar todo el tablero en ella." },
-    { sel: '[data-tour="experiencia"]', titulo: "Pensado para el turista", texto: "De dónde viene cada visitante, qué sede elige y qué experiencia disfruta. Clave para campañas y alianzas con agencias." },
-    { sel: '[data-tour="gobernanza"]', titulo: "Centro de gobernanza de datos", texto: "Índice de calidad, 10 reglas automáticas, linaje del dato, protección de datos personales (Ley 29733) y bitácora de auditoría." },
-    { sel: '[data-tour="ia"]', titulo: "IA responsable, no caja negra", texto: "Hallazgos automáticos con su cálculo explicado, nivel de confianza y validación humana. También puedes preguntarle a los datos." },
-    { sel: '[data-tour="automatizacion"]', titulo: "Menos trabajo manual", texto: "Sincronización, validación, recordatorios de cobranza por WhatsApp y reporte semanal automático. ¡Gracias por recorrer la propuesta!" },
+    { tab: "resumen", sel: '[data-tour="fuente"]', titulo: "Datos en vivo desde Google Sheets", texto: "El tablero lee una hoja compartida. Cuando recepción registra una venta, aquí se actualiza solo cada 5 minutos o al sincronizar." },
+    { tab: "resumen", sel: '[data-tour="roles"]', titulo: "Cada persona ve lo que le corresponde", texto: "Un administrador de sede solo ve su sede y nadie ve DNI ni teléfonos sin autorización. Prueba cambiar el rol." },
+    { tab: "resumen", sel: '[data-tour="kpis"]', titulo: "El pulso del negocio en seis cifras", texto: "Comparadas con el mismo periodo del año anterior. Clic en cualquiera para ir a su pestaña." },
+    { tab: "resumen", sel: '[data-tour="pestanas"]', titulo: "Nueve pestañas, cada una con un propósito", texto: "Dinero, cobranza, socios, turistas, comparador, detalle, gobernanza e IA. También puedes usar las teclas 1 a 9." },
+    { tab: "resumen", sel: '[data-tour="postales"]', titulo: "Las cuatro sedes de un vistazo", texto: "Cada postal resume facturación, cobranza, NPS y ocupación, con un estado automático. Clic para filtrar todo por esa sede." },
+    { tab: "dinero", sel: '[data-tour="ingresos"]', titulo: "Lo vendido, lo cobrado y lo que viene", texto: "La brecha entre barras y línea verde es dinero por cobrar. La zona amarilla es el pronóstico de IA con su rango." },
+    { tab: "turistas", sel: '[data-tour="experiencia"]', titulo: "Pensado para el turista", texto: "De dónde viene cada visitante, qué sede elige y qué experiencia disfruta. Clave para campañas y agencias." },
+    { tab: "cara", sel: '[data-tour="cara"]', titulo: "Cara a cara", texto: "Elige dos sedes y compáralas en seis dimensiones para decidir dónde invertir y qué replicar." },
+    { tab: "detalle", sel: '[data-tour="detalle"]', titulo: "Tu propia tabla dinámica", texto: "Agrupa por sede, servicio, canal o cliente. Ordena por cualquier columna y despliega cada fila." },
+    { tab: "gobernanza", sel: '[data-tour="gobernanza"]', titulo: "Datos en los que se puede confiar", texto: "Índice de calidad, 10 reglas automáticas, recorrido del dato, Ley 29733 y bitácora de auditoría." },
+    { tab: "ia", sel: '[data-tour="ia"]', titulo: "IA responsable, no caja negra", texto: "Cada hallazgo explica cómo se calculó y espera que una persona lo valide." },
+    { tab: "ia", sel: '[data-tour="automatizacion"]', titulo: "Menos trabajo manual", texto: "Sincronización, validación, cobranza por WhatsApp y reporte semanal automáticos. Gracias por recorrer la propuesta." },
   ];
   let i = 0, activo = false;
   const $ = (id) => document.getElementById(id);
@@ -32,7 +34,9 @@ window.TumiTour = (() => {
 
   function mostrar(n) {
     i = Math.max(0, Math.min(PASOS.length - 1, n));
-    const p = PASOS[i], el = document.querySelector(p.sel);
+    const p = PASOS[i];
+    if (p.tab && window.TumiApp && TumiApp.tab !== p.tab) TumiApp.irA(p.tab, { scroll: false, sonido: false });
+    const el = document.querySelector(p.sel);
     $("tour-step").textContent = `Paso ${i + 1} de ${PASOS.length}`;
     $("tour-title").textContent = p.titulo;
     $("tour-text").textContent = p.texto;

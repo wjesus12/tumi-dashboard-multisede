@@ -6,22 +6,22 @@ Propuesta de dashboard comercial para **Club El Tumi** (Lima, Chiclayo, Ica y Ta
 > Proyecto independiente elaborado como muestra de trabajo. Todos los datos son **100 % simulados**.
 > El logo y la marca pertenecen a Club El Tumi.
 
-## Qué muestra
+## Qué muestra: 9 pestañas, cada una con un propósito
 
-| Sección | Contenido |
+| Pestaña | Para qué sirve |
 |---|---|
-| 01 · Pulso del negocio | 6 KPI (facturación, cobranza, socios activos, reservas, ocupación, NPS) con variación vs. el año anterior y minigráficos |
-| 02 · Facturación y pronóstico | Facturado vs. cobrado, metas por mes, pronóstico de IA a 3 meses con rango de confianza, mapa del Perú, mix de servicios, radar de sedes y medidores de meta |
-| 03 · Reservas y temporadas | Calendario de calor diario (veranos, feriados, fines de semana) y canales de reserva |
-| 04 · Cobranza y cartera | Antigüedad de la deuda por sede, medios de pago y prioridad de gestión con datos protegidos |
-| 05 · Socios y suscripciones | Socios activos por plan, altas y renovaciones |
-| 06 · Experiencia del turista | Flujo origen → sede → experiencia, NPS por sede, efecto de la saturación en la satisfacción y ocupación mensual |
-| 07 · Gobernanza de datos | Índice de calidad en vivo, 10 reglas automáticas, linaje del dato, enmascaramiento de datos personales (Ley N.° 29733), bitácora de auditoría y diccionario de datos |
-| 08 · IA responsable | Hallazgos automáticos explicables con nivel de confianza y validación humana, preguntas en lenguaje natural y ficha del modelo |
-| 09 · Automatizaciones | Sincronización con Google Sheets, validación diaria, recordatorios de cobranza por WhatsApp (solo con consentimiento) y reporte semanal |
+| Resumen | Ver cómo vamos, qué sede necesita atención y qué hacer hoy: 6 indicadores, postales de las 4 sedes con estado automático y las prioridades del día |
+| Dinero | Facturado vs. cobrado, metas, pronóstico de IA a 3 meses con rango de confianza, mapa de la red y mix de servicios |
+| Cobranza | Antigüedad de la deuda, a quién llamar primero, medios de pago y recordatorio por WhatsApp solo con consentimiento |
+| Socios | Socios activos por plan, altas, renovaciones y membresías que vencen en 60 días |
+| Temporadas y turistas | Calendario de reservas, canales, viaje del visitante (origen → sede → experiencia), NPS y efecto de la saturación |
+| Cara a cara | Comparador interactivo de dos sedes en seis dimensiones |
+| Detalle | Tabla dinámica: agrupar por sede, servicio, canal o cliente, ordenar, buscar y desplegar filas |
+| Gobernanza | Índice de calidad en vivo, 10 reglas automáticas, recorrido del dato, enmascaramiento (Ley N.° 29733), bitácora y diccionario |
+| IA y automatización | Hallazgos explicables con validación humana, preguntas a los datos, ficha del modelo y automatizaciones |
 
-Incluye recorrido guiado de 10 pasos, roles de acceso (gerencia, administrador por sede, analista, auditor),
-música ambiente andina generativa y efectos de sonido creados con Web Audio, exportación CSV y reporte PDF.
+Los títulos de cada pestaña se escriben solos según los datos (por ejemplo, «Vendemos más, pero cobramos menos»).
+Incluye roles de acceso, recorrido guiado, atajos de teclado (1 a 9), música andina generativa, exportación CSV y PDF.
 
 ## Base de datos
 
@@ -61,6 +61,6 @@ Abrir `http://localhost:8080`. (Se necesita un servidor: el navegador no lee los
 
 ## Tecnología
 
-HTML, CSS y JavaScript sin frameworks · [Apache ECharts 5.5](https://echarts.apache.org) · Montserrat + Sora ·
+HTML, CSS y JavaScript sin frameworks · [Apache ECharts 5.5](https://echarts.apache.org) · Montserrat ·
 contorno del Perú de Natural Earth (`world-atlas`) · Google Sheets · Google Apps Script · Netlify
 (con cabeceras de seguridad y CSP estricta en `netlify.toml`).
