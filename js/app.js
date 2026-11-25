@@ -23,7 +23,7 @@
     { id: "verano", nombre: "Verano 2026", desde: "2026-01-01", hasta: "2026-03-31" },
   ];
   const TABS = [
-    { id: "resumen", nombre: "Resumen" }, { id: "dinero", nombre: "Dinero" }, { id: "cobranza", nombre: "Cobranza" },
+    { id: "resumen", nombre: "Resumen" }, { id: "facturacion", nombre: "Facturación" }, { id: "cobranza", nombre: "Cobranza" },
     { id: "socios", nombre: "Socios" }, { id: "turistas", nombre: "Temporadas y turistas" }, { id: "cara", nombre: "Cara a cara" },
     { id: "detalle", nombre: "Detalle" }, { id: "gobernanza", nombre: "Gobernanza" }, { id: "ia", nombre: "IA y automatización" },
   ];
@@ -152,7 +152,7 @@
   function renderKPIs() {
     const { k, serie } = S.ctx, a = k.actual, b = k.anterior;
     const defs = [
-      { id: "facturacion", label: "Facturación", v: a.facturacion, f: (x) => fmt.soles(x), d: deltaTxt(a.facturacion, b?.facturacion), s: serie.map((x) => x.facturacion), tab: "dinero" },
+      { id: "facturacion", label: "Facturación", v: a.facturacion, f: (x) => fmt.soles(x), d: deltaTxt(a.facturacion, b?.facturacion), s: serie.map((x) => x.facturacion), tab: "facturacion" },
       { id: "cobranza", label: "Cobranza", v: a.cobranza == null ? null : a.cobranza * 100, f: (x) => `${x.toFixed(1)} %`, d: deltaTxt(a.cobranza, b?.cobranza, "ratio"), s: serie.map((x) => x.cobranza), tab: "cobranza" },
       { id: "socios", label: "Socios activos", v: a.socios, f: fmt.num, d: deltaTxt(a.socios, b?.socios), s: serie.map((x) => x.socios), tab: "socios" },
       { id: "reservas", label: "Reservas", v: a.reservas, f: fmt.num, d: deltaTxt(a.reservas, b?.reservas), s: serie.map((x) => x.reservas), tab: "turistas" },
@@ -194,19 +194,19 @@
     $("hoy").innerHTML = c.hallazgos.slice(0, 4).map((h) => `<li><i style="background:${sevC[h.sev]}"></i><div><b>${esc(h.titulo)}</b><small>${esc(h.accion)}</small></div></li>`).join("") || `<li class="empty">Nada urgente con estos filtros.</li>`;
   }
 
-  /* ---------- Pestaña: Dinero ---------- */
+  /* ---------- Pestaña: Facturación ---------- */
   function metasPorMes(f) {
     const diasMes = +U.finDeMes(corte.slice(0, 7)).slice(8), factor = +corte.slice(8) / diasMes;
     const m = D.metaPeriodo(S.datos.metas, f, S.ctx.mm);
     if (m[corte.slice(0, 7)]) m[corte.slice(0, 7)] *= factor;
     return m;
   }
-  function tabDinero() {
+  function tabFacturacion() {
     const c = S.ctx, f = S.filtros, a = c.k.actual, b = c.k.anterior;
     const dF = deltaTxt(a.facturacion, b?.facturacion), dC = deltaTxt(a.cobranza, b?.cobranza, "ratio");
-    $("h-dinero").innerHTML = !b ? "Lo vendido, lo cobrado y lo que viene" : dF.d > 0 && dC.d < 0 ? "Vendemos más, pero <span>cobramos menos</span>" : dF.d > 0 ? "Vendemos más y <span>cobramos mejor</span>" : "Las ventas <span>bajan</span> frente al año anterior";
+    $("h-facturacion").innerHTML = !b ? "Lo vendido, lo cobrado y lo que viene" : dF.d > 0 && dC.d < 0 ? "Vendemos más, pero <span>cobramos menos</span>" : dF.d > 0 ? "Vendemos más y <span>cobramos mejor</span>" : "Las ventas <span>bajan</span> frente al año anterior";
     const p = c.prono.futuros[0];
-    stats("s-dinero", [
+    stats("s-facturacion", [
       { label: "Facturación", v: fmt.soles(a.facturacion), note: dF.txt, cls: dF.cls },
       { label: "Cobrado", v: fmt.soles(a.cobrado), note: `${fmt.pct(a.cobranza)} de lo facturado`, cls: "" },
       { label: "Ticket promedio", v: fmt.soles(a.ticket), note: "por reserva", cls: "" },
@@ -437,7 +437,7 @@
   }
 
   /* ---------- Navegación entre pestañas ---------- */
-  const RENDER = { resumen: tabResumen, dinero: tabDinero, cobranza: tabCobranza, socios: tabSocios, turistas: tabTuristas, cara: tabCara, detalle: tabDetalle, gobernanza: tabGobernanza, ia: tabIA };
+  const RENDER = { resumen: tabResumen, facturacion: tabFacturacion, cobranza: tabCobranza, socios: tabSocios, turistas: tabTuristas, cara: tabCara, detalle: tabDetalle, gobernanza: tabGobernanza, ia: tabIA };
   function pintarTab(id) {
     RENDER[id]();
     S.dirty.delete(id);

@@ -11,7 +11,7 @@ Propuesta de dashboard comercial para **Club El Tumi** (Lima, Chiclayo, Ica y Ta
 | Pestaña | Para qué sirve |
 |---|---|
 | Resumen | Ver cómo vamos, qué sede necesita atención y qué hacer hoy: 6 indicadores, postales de las 4 sedes con estado automático y las prioridades del día |
-| Dinero | Facturado vs. cobrado, metas, pronóstico de IA a 3 meses con rango de confianza, mapa de la red y mix de servicios |
+| Facturación | Facturado vs. cobrado, metas, pronóstico de IA a 3 meses con rango de confianza, mapa de la red y mix de servicios |
 | Cobranza | Antigüedad de la deuda, a quién llamar primero, medios de pago y recordatorio por WhatsApp solo con consentimiento |
 | Socios | Socios activos por plan, altas, renovaciones y membresías que vencen en 60 días |
 | Temporadas y turistas | Calendario de reservas, canales, viaje del visitante (origen → sede → experiencia), NPS y efecto de la saturación |
